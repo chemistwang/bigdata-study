@@ -52,12 +52,12 @@ public class WordCount extends Configured implements Tool {
         //设置K3类型
         job.setOutputKeyClass(Text.class);
         //设置V3类型
-        job.setOutputKeyClass(LongWritable.class);
+        job.setOutputValueClass(LongWritable.class);
 
         //第八步：设置输出类型
         job.setOutputFormatClass(TextOutputFormat.class);
         //设置输出的路径
-        Path path = new Path("hdfs://192.168.0.242:8020/wordCount");
+        Path path = new Path("hdfs://192.168.0.242:8020/wyl/wordCount_out");
         TextOutputFormat.setOutputPath(job, path);
         //若输出文件路径已存在则会报错，先行判断删除
         FileSystem fileSystem = FileSystem.get(new URI("hdfs://192.168.0.242:8020"), new Configuration());
