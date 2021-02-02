@@ -1,5 +1,6 @@
 package MapReduce;
 
+import Combiner.MyCombiner;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
@@ -45,7 +46,11 @@ public class WordCount extends Configured implements Tool {
         //设置Map阶段的V2类型
         job.setMapOutputValueClass(LongWritable.class);
 
-        //第三、四、五、六步采用默认的方式
+        //第三（分区）、四（排序）、五（规约）、六（分布）步采用默认的方式
+
+        //设置规约
+        //job.setCombinerClass(MyCombiner.class);
+
 
         //第七步：指定Reduce阶段的处理方式和数据类型
         job.setReducerClass(WordCountReduce.class);
